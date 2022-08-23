@@ -1,6 +1,6 @@
-import { Pagination } from 'flowbite-react';
 import React, { useContext } from 'react';
 import Loader from '../../components/Loader';
+import Pagination from '../../components/Pagination';
 import PlanetCard from '../../components/PlanetCard';
 import PlanetsContext from '../../contexts/PlanetsContext';
 const PlanetsPage = () => {
@@ -17,16 +17,11 @@ const PlanetsPage = () => {
 					<PlanetCard key={index} planet={item} />
 				))}
 			</div>
-			<div className='flex items-center justify-center text-center'>
-				<Pagination
-					currentPage={
-						planets.next ? planets.next.slice(-1) - 1 : planets.count / 10
-					}
-					layout='navigation'
-					totalPages={planets.count / 10}
-					onPageChange={(p) => getPlanets(p)}
-				/>
-			</div>
+			<Pagination
+				current={planets.next ? planets.next.slice(-1) - 1 : planets.count / 10}
+				total={planets.count / 10}
+				getData={(p) => getPlanets(p)}
+			/>
 		</div>
 	);
 };

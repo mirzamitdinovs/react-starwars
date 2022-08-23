@@ -7,6 +7,7 @@ import GalleryPage from './pages/GalleryPage';
 import PlanetsPage from './pages/PlanetsPage';
 import { PlanetsProvider } from './contexts/PlanetsContext';
 import PlanetDetailsPage from './pages/PlanetDetailsPage';
+
 function App() {
 	return (
 		<BrowserRouter>

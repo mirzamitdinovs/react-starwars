@@ -1,7 +1,26 @@
 import React from 'react';
 import { Navbar } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 const CustomNavbar = () => {
+	const location = useLocation();
+	const navbars = [
+		{
+			title: 'Home',
+			url: '/',
+		},
+		{
+			title: 'Users',
+			url: '/users',
+		},
+		{
+			title: 'Gallery',
+			url: '/gallery',
+		},
+		{
+			title: 'Planets',
+			url: '/planets',
+		},
+	];
 	return (
 		<Navbar fluid={true} rounded={true}>
 			<Navbar.Brand href='https://flowbite.com/'>
@@ -16,18 +35,13 @@ const CustomNavbar = () => {
 			</Navbar.Brand>
 			<Navbar.Toggle />
 			<Navbar.Collapse>
-				<Link to='/'>
-					<Navbar.Link active={true}>Home</Navbar.Link>
-				</Link>
-				<Link to='/users'>
-					<Navbar.Link>Users</Navbar.Link>
-				</Link>
-				<Link to='/gallery'>
-					<Navbar.Link>Gallery</Navbar.Link>
-				</Link>
-				<Link to='/planets'>
-					<Navbar.Link>Planets</Navbar.Link>
-				</Link>
+				{navbars.map((item, index) => (
+					<Link key={index} to={item.url}>
+						<Navbar.Link active={location.pathname === item.url}>
+							{item.title}
+						</Navbar.Link>
+					</Link>
+				))}
 			</Navbar.Collapse>
 		</Navbar>
 	);
