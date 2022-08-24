@@ -40,7 +40,7 @@ const GalleryPage = () => {
 	};
 	if (loading) return <Loader />;
 	return (
-		<div className='container py-10'>
+		<div className='py-10'>
 			<SearchBar submit={handleSearchSubmit} />
 			<InfiniteScroll
 				dataLength={data.photos.length} //This is important field to render the next data

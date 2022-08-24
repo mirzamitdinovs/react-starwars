@@ -10,3 +10,7 @@ export const PARSE_LINK_BACK = (link) => {
 		.map((item) => item[0].toUpperCase() + item.slice(1))
 		.join(' ');
 };
+
+export const SHORTEN_TEXT = (text, count) => {
+	return text.length > count ? `${text.slice(0, count)}...` : text;
+};

@@ -7,22 +7,28 @@ import GalleryPage from './pages/GalleryPage';
 import PlanetsPage from './pages/PlanetsPage';
 import { PlanetsProvider } from './contexts/PlanetsContext';
 import PlanetDetailsPage from './pages/PlanetDetailsPage';
+import { ProductsProvider } from './contexts/ProductsContext';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<PlanetsProvider>
-				<div className='container px-10'>
-					<CustomNavbar />
-					<Routes>
-						<Route path='/' element={<HomePage />} />
-						<Route path='/users' element={<UserPage />} />
-						<Route path='/gallery' element={<GalleryPage />} />
-						<Route path='/planets' element={<PlanetsPage />} />
-						<Route path='/planets/:planet_id' element={<PlanetDetailsPage />} />
-					</Routes>
-				</div>
-			</PlanetsProvider>
+			<ProductsProvider>
+				<PlanetsProvider>
+					<div className='container px-10 mx-auto'>
+						<CustomNavbar />
+						<Routes>
+							<Route path='/' element={<HomePage />} />
+							<Route path='/users' element={<UserPage />} />
+							<Route path='/gallery' element={<GalleryPage />} />
+							<Route path='/planets' element={<PlanetsPage />} />
+							<Route
+								path='/planets/:planet_id'
+								element={<PlanetDetailsPage />}
+							/>
+						</Routes>
+					</div>
+				</PlanetsProvider>
+			</ProductsProvider>
 		</BrowserRouter>
 	);
 }
