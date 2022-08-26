@@ -11,6 +11,8 @@ import { ProductsProvider } from './contexts/ProductsContext';
 import CartSidebar from './containers/CartSidebar';
 import { createRef, useState } from 'react';
 import { CartProvider } from './contexts/CartContext';
+import NewsPage from './pages/NewsPage';
+import NewsByCategory from './pages/NewsByCategory';
 
 function App() {
 	return (
@@ -26,6 +28,8 @@ function App() {
 								<Route path='/users' element={<UserPage />} />
 								<Route path='/gallery' element={<GalleryPage />} />
 								<Route path='/planets' element={<PlanetsPage />} />
+								<Route path='/news' element={<NewsPage />} />
+								<Route path='/news/:category' element={<NewsByCategory />} />
 								<Route
 									path='/planets/:planet_id'
 									element={<PlanetDetailsPage />}

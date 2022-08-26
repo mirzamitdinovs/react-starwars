@@ -24,6 +24,10 @@ const CustomNavbar = () => {
 			title: 'Planets',
 			url: '/planets',
 		},
+		{
+			title: 'News',
+			url: '/news',
+		},
 	];
 
 	return (
