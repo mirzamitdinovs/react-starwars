@@ -74,8 +74,6 @@ export const CartProvider = ({ children }) => {
 	const isInCart = (id) => {
 		return !!cart.find((item) => item.id === id);
 	};
-	console.log('cart: ', cart);
-	console.log('ls: ', JSON.parse(localStorage.getItem('cart')));
 
 	return (
 		<CartContext.Provider

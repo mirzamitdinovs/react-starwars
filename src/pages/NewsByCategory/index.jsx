@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import NewsList from '../../containers/NewsList';
+import NewsListInfinite from '../../containers/NewsListInfinite';
 const NewsByCategory = () => {
 	const params = useParams();
 	const { category } = params;
@@ -10,7 +11,7 @@ const NewsByCategory = () => {
 				{category[0].toUpperCase() + category.slice(1)}
 			</h3>
 
-			<NewsList
+			<NewsListInfinite
 				category={{
 					id: category,
 					name: category[0].toUpperCase() + category.slice(1),

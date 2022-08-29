@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-export const GET_ALL_NEWS = async (pageSize, source) => {
+export const GET_ALL_NEWS = async (pageSize, source, page) => {
 	try {
 		const res = await axios.get(
-			`https://newsapi.org/v2/top-headlines?country=us&category=${source}&pageSize=${pageSize}&apiKey=4ea1091f6e6e4c63b117b2949e8d3f7b`
+			`https://newsapi.org/v2/top-headlines?country=us&page=${
+				page || 1
+			}&category=${source}&pageSize=${pageSize}&apiKey=4ea1091f6e6e4c63b117b2949e8d3f7b`
 		);
 		return res.data;
 	} catch (err) {
