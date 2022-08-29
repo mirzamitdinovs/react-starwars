@@ -1,11 +1,28 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 
+	useEffect(() => {
+		const ls = localStorage.getItem('cart');
+		if (ls && ls.length) {
+			setCart(JSON.parse(ls));
+		}
+	}, []);
+
 	const addProduct = (product) => {
+		localStorage.setItem(
+			'cart',
+			JSON.stringify([
+				...cart,
+				{
+					...product,
+					qty: 1,
+				},
+			])
+		);
 		setCart([
 			...cart,
 			{
@@ -16,13 +33,27 @@ export const CartProvider = ({ children }) => {
 	};
 
 	const removeProduct = (id) => {
+		localStorage.setItem(
+			'cart',
+			JSON.stringify(cart.filter((item) => item.id !== id))
+		);
 		setCart(cart.filter((item) => item.id !== id));
 	};
 
 	const changeProductQty = (qty, id) => {
 		if (qty === 0) {
+			localStorage.setItem(
+				'cart',
+				JSON.stringify(cart.filter((item) => item.id !== id))
+			);
 			removeProduct(id);
 		} else {
+			localStorage.setItem(
+				'cart',
+				JSON.stringify(
+					cart.map((item) => (item.id === id ? { ...item, qty: qty } : item))
+				)
+			);
 			setCart(
 				cart.map((item) => (item.id === id ? { ...item, qty: qty } : item))
 			);
@@ -43,6 +74,8 @@ export const CartProvider = ({ children }) => {
 	const isInCart = (id) => {
 		return !!cart.find((item) => item.id === id);
 	};
+	console.log('cart: ', cart);
+	console.log('ls: ', JSON.parse(localStorage.getItem('cart')));
 
 	return (
 		<CartContext.Provider
